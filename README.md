@@ -57,7 +57,7 @@ El código fuente completo del proyecto está disponible en un repositorio públ
 
 ![image](https://github.com/Daniel349167/GestionEscolar/assets/62466867/b05f5f4a-e506-4b3b-b099-a1f8f5ab38c1)
 
-![image](https://github.com/Daniel349167/GestionEscolar/assets/62466867/25552457-38e9-488f-bda6-b52bd3344e56)
+![image](https://github.com/Daniel349167/GestionEscolar/assets/62466867/a41eb517-e221-40b0-9973-cfbe08c33821)
 
 ![image](https://github.com/Daniel349167/GestionEscolar/assets/62466867/ebede4ae-c114-4222-8ad3-4851a87dd8c2)
 
