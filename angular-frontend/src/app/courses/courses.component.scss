@@ -1,0 +1,30 @@
+.container {
+  margin-top: 20px; // Ajusta este valor al que desees
+}
+
+.sortable-header {
+  cursor: pointer;
+  user-select: none;
+
+  .sort-icon {
+    display: inline-block;
+    width: 1em;
+    margin-left: 5px;
+  }
+}
+
+
+.custom-green {
+  background-color: #5cb85c;
+  /* Un verde no tan claro */
+  color: #fff;
+  /* Texto blanco */
+  border-color: #4cae4c;
+  /* Borde un poco más oscuro que el fondo */
+}
+
+.custom-green:hover {
+  background-color: #4cae4c;
+  /* Un poco más oscuro al pasar el ratón por encima */
+  border-color: #398439;
+}

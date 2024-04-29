@@ -1,0 +1,99 @@
+<div class="container mt-3 pt-1">
+  <h2>Lista de Estudiantes</h2>
+  <button class="btn custom-green mt-3 mb-2" (click)="selectStudent(createNewStudent())">Agregar Nuevo Estudiante</button>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Edad</th>
+        <th>Cédula</th>
+        <th>Email</th>
+        <th>Cursos Asignados</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let student of students" class="mb-2">
+        <td>{{ student.nombre }}</td>
+        <td>{{ student.apellido }}</td>
+        <td>{{ student.edad }}</td>
+        <td>{{ student.cedula }}</td>
+        <td>{{ student.email }}</td>
+        <td>
+          <button *ngIf="!student.cursosAsociados || student.cursosAsociados.length === 0" class="btn btn-info" (click)="loadStudentCourses(student)">Ver Cursos</button>
+          <ul *ngIf="student.cursosAsociados && student.cursosAsociados.length > 0" class="lista-sin-espacio">
+            <li *ngFor="let curso of student.cursosAsociados">{{ curso.nombre }}</li>
+          </ul>
+        </td>
+        
+        <td>
+          <button class="btn btn-primary" style="margin-right: 3px;" (click)="selectStudent(student)">Editar</button>
+          <button class="btn btn-danger" style="margin-left: 3px;" (click)="deleteStudent(student.id)">Eliminar</button>
+        </td>
+        
+      </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="selectedStudent as student" class="mt-3 pt-2">
+    <h3>{{ student.id ? 'Editar' : 'Agregar' }} Estudiante</h3>
+    <div class="mb-3"></div>
+    <form (ngSubmit)="saveStudent(studentForm)" #studentForm="ngForm">
+      <div class="form-group">
+        <input [(ngModel)]="selectedStudent.nombre" name="nombre" placeholder="Nombre" required class="form-control mb-2" #nombre="ngModel">
+        <div *ngIf="nombre.invalid && nombre.touched" class="alert alert-danger">
+          El nombre es obligatorio.
+        </div>
+    
+        <input [(ngModel)]="selectedStudent.apellido" name="apellido" placeholder="Apellido" class="form-control mb-2">
+        <input [(ngModel)]="selectedStudent.edad" name="edad" type="number" placeholder="Edad" required min="18" class="form-control mb-2" #edad="ngModel">
+        <div *ngIf="edad.invalid && edad.touched" class="alert alert-danger">
+          La edad es obligatoria y debe ser mayor o igual a 18.
+        </div>
+    
+        <input [(ngModel)]="selectedStudent.cedula" name="cedula" placeholder="Cédula" required class="form-control mb-2" maxlength="11" #cedula="ngModel">
+        <div *ngIf="cedula.invalid && cedula.touched" class="alert alert-danger">
+          La cédula es obligatoria y debe tener hasta 11 caracteres.
+        </div>
+    
+        <input [(ngModel)]="selectedStudent.email" name="email" type="email" placeholder="Email" required class="form-control mb-2" #email="ngModel">
+        <!-- Muestra el mensaje de error si existe -->
+        <!-- <div *ngIf="emailError" class="alert alert-danger">
+          {{ emailError }}
+        </div> -->
+        <div *ngIf="email.invalid && email.touched" class="alert alert-danger">
+          El email es obligatorio y debe ser un correo electrónico válido.
+        </div>
+    
+  
+    
+          <!-- Dentro de este div, se puede acceder a selectedStudent de forma segura -->
+          <select multiple [(ngModel)]="selectedCursos" (change)="updateCursosSeleccionados()" #cursosAsociados="ngModel" name="cursosAsociados" class="form-control mb-2 select-alto">
+            <option [ngValue]="null" disabled [selected]="!selectedStudent?.cursosAsociados?.length">Selecciona uno o mas cursos</option>
+            <option *ngFor="let curso of cursos" [ngValue]="curso">{{ curso.nombre }}</option>
+          </select>
+      
+        
+        
+        
+        
+        <!-- Campo de texto solo para mostrar -->
+        <input type="text" class="form-control" [value]="cursosSeleccionados" readonly>
+        
+        <div *ngIf="cursosAsociados.invalid && cursosAsociados.touched" class="alert alert-danger">
+          Debes seleccionar al menos un curso.
+        </div>
+        
+        
+        
+        <div style="margin-top: 15px;"></div>
+         
+      </div>
+      <button type="submit" class="btn btn-success mr-2" style="margin-right: 3px;">Guardar</button>
+      <button type="button" class="btn btn-secondary ml-2"  style="margin-left: 3px;" (click)="cancel()">Cancelar</button>
+    </form>
+    
+  </div>
+  <div style="margin-top: 45px;"></div>
+</div>

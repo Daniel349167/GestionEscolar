@@ -1,0 +1,58 @@
+<div class="container">
+    <h2>Gestión de Administradores</h2>
+    
+    <!-- Formulario para añadir/editar administradores -->
+    <div *ngIf="selectedAdmin" class="card">
+      <div class="card-body">
+        <form>
+          <div class="mb-3">
+            <label for="nombre" class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="nombre" [(ngModel)]="selectedAdmin.nombre" name="nombre" required>
+          </div>
+          <div class="mb-3">
+            <label for="apellido" class="form-label">Apellido</label>
+            <input type="text" class="form-control" id="apellido" [(ngModel)]="selectedAdmin.apellido" name="apellido">
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label">Correo Electrónico</label>
+            <input type="email" class="form-control" id="email" [(ngModel)]="selectedAdmin.email" name="email" required>
+          </div>
+          <div class="mb-3">
+            <label for="password" class="form-label">Contraseña</label>
+            <input type="password" class="form-control" id="password" [(ngModel)]="selectedAdmin.password" name="password" required>
+          </div>
+          <button type="button" class="btn btn-success" (click)="saveAdmin()">Guardar</button>
+          <button type="button" class="btn btn-secondary" (click)="cancel()">Cancelar</button>
+        </form>
+      </div>
+    </div>
+    
+    <!-- Listado de administradores -->
+    <div class="mt-4">
+      <h3>Listado de Administradores</h3>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Apellido</th>
+            <th scope="col">Correo Electrónico</th>
+            <th scope="col">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let admin of admins; let i = index">
+            <th scope="row">{{ i + 1 }}</th>
+            <td>{{ admin.nombre }}</td>
+            <td>{{ admin.apellido }}</td>
+            <td>{{ admin.email }}</td>
+            <td>
+              <button type="button" class="btn btn-primary" (click)="selectAdmin(admin)">Editar</button>
+              <button type="button" class="btn btn-danger" *ngIf="admin.id !== undefined" (click)="deleteAdmin(admin.id)">Eliminar</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  

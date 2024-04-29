@@ -1,0 +1,23 @@
+# Dependencias
+/node_modules
+
+# Archivos de compilación
+/dist
+/tmp
+/out-tsc
+
+# Archivos de caché
+/.angular/cache
+
+# Archivos de editor
+/.idea
+/.vscode
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db
+
+# Archivos de logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*

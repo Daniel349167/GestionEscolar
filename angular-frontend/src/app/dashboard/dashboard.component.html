@@ -1,0 +1,47 @@
+<div class="container mt-5">
+  <h1 class="text-center mb-4">Dashboard de Gestión Escolar</h1>
+  <div class="row">
+    <div class="col-lg-6 mb-4">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h3 class="card-title">Top 3 Cursos con más estudiantes</h3>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item" *ngFor="let course of stats.topCourses">
+              {{ course.nombre }} - {{ course.estudiantes_count }} estudiantes
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6 mb-4">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h3 class="card-title">Top 3 Estudiantes con más cursos</h3>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item" *ngFor="let student of stats.topStudents">
+              {{ student.nombre }} - {{ student.cursos_count }} cursos
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-6">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h4>Total de Cursos</h4>
+          <p class="card-text">{{ stats.totalCourses }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h4>Total de Estudiantes</h4>
+          <p class="card-text">{{ stats.totalStudents }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

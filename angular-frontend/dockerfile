@@ -1,0 +1,32 @@
+# Stage 1: Compilar y construir la aplicación Angular
+FROM node:18-alpine as build
+
+# Establece el directorio de trabajo en el contenedor
+WORKDIR /app
+
+# Copia el package.json y el package-lock.json (si está disponible)
+COPY package.json package-lock.json* ./
+
+# Instala todas las dependencias necesarias
+RUN npm install
+
+# Copia el resto de los archivos de la aplicación
+COPY . .
+
+# Ejecuta el comando para construir la aplicación para producción
+RUN npm run build
+
+# Stage 2: Configura el servidor Nginx para servir la aplicación Angular
+FROM nginx:alpine
+
+# Copia el artefacto de construcción desde la etapa de compilación al directorio de Nginx
+COPY --from=build /app/dist/angular-frontend /usr/share/nginx/html
+
+# Copia una configuración de Nginx si es necesario (asumiendo que tienes un nginx.conf personalizado)
+# COPY nginx.conf /etc/nginx/nginx.conf
+
+# Expone el puerto 80 para que el servicio sea accesible
+EXPOSE 80
+
+# Inicia Nginx y mantiene el proceso en primer plano
+CMD ["nginx", "-g", "daemon off;"]

@@ -1,0 +1,21 @@
+FROM php:8.2-fpm-alpine
+
+# Instala las dependencias necesarias para pdo_pgsql
+RUN apk update && apk add --no-cache postgresql-dev
+
+# Instala las extensiones necesarias de PHP
+RUN docker-php-ext-install pdo pdo_pgsql
+
+# Instala Composer
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+
+WORKDIR /var/www
+
+# Copia la aplicación Laravel al contenedor
+COPY . /var/www
+
+# Instala las dependencias de la aplicación con Composer
+RUN composer install --no-interaction
+
+# Configura el punto de entrada para PHP-FPM
+CMD ["php-fpm"]

@@ -1,0 +1,38 @@
+# Dependencias de Composer
+/vendor
+
+# Archivos de entorno
+/.env
+/.env.backup
+
+# Archivos de sistema y caché
+/node_modules
+/public/hot
+/public/storage
+/storage/*.key
+/vendor
+/.idea
+/.vscode
+.DS_Store
+Thumbs.db
+
+# Archivos de configuración de editor
+/.phpstorm.meta.php
+
+# Archivos de caché y logs
+/bootstrap/cache/*
+/storage/logs/*
+!/storage/framework/sessions
+!/storage/framework/views
+!/storage/framework/cache
+
+# Archivos de compilación de front-end
+/public/mix-manifest.json
+/public/css
+/public/js
+
+# Archivos de PHPUnit
+/phpunit.xml
+
+# Laravel Vite
+/vite.config.js

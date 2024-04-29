@@ -1,0 +1,85 @@
+/* Estilos básicos para la navbar */
+.navbar {
+    padding-left: 30px;
+    padding-right: 30px;
+    color: #000000; /* Texto blanco para mayor contraste */
+}
+
+  
+  /* Estilos para pantallas más grandes */
+  @media (min-width: 768px) {
+    .navbar {
+      padding-left: 90px;
+      padding-right: 70px;
+    }
+  }
+  
+  /* Ajustes de la imagen del usuario */
+  .navbar .navbar-nav img {
+    border: 2px solid #fff;
+    margin-right: 5px;
+  }
+  
+  /* Asegúrate de que los elementos de la navbar no estén pegados a los bordes en móviles */
+  .navbar-toggler {
+    margin-right: 15px;
+  }
+  
+  /* Estilos para el enlace activo */
+  .navbar .navbar-nav .nav-link.active {
+    background-color: #0056b3 !important; /* Un tono más oscuro de azul para el elemento activo */
+    color: #ffffff !important; /* Texto blanco para resaltar el activo */
+}
+
+
+  
+  /* Estilos opcionales para el texto del enlace */
+  .navbar .navbar-nav .nav-link {
+    margin-right: 10px;
+  }
+  
+  /* Estilos adicionales para el botón de inicio de sesión */
+  .btn-primary {
+    background-color: #28a745; /* Verde para el botón */
+    border-color: #28a745; /* Borde del mismo color */
+  }
+  
+  .btn-primary:hover {
+    background-color: #218838; /* Un verde más oscuro al pasar el mouse */
+    border-color: #1e7e34; /* Borde del mismo color */
+  }
+  
+
+  .navbar-login-btn {
+    background-color: transparent; /* Fondo transparente para que no destaque demasiado */
+    border: 1px solid #000; /* Borde negro para delinear el botón */
+    color: #000; /* Texto negro para legibilidad */
+    padding: 5px 10px; /* Agrega un poco de espacio alrededor del texto */
+    transition: background-color 0.3s, color 0.3s; /* Transición suave para hover */
+    text-decoration: none;
+  }
+  
+  .navbar-login-btn:hover {
+    background-color: #000; /* Fondo negro para el hover */
+    color: #fff; /* Texto blanco para el hover */
+  }
+
+
+  .navbar-logout-btn {
+    background-color: transparent; /* Fondo transparente para que no destaque demasiado */
+    border: 1px solid #000; /* Borde negro para delinear el botón */
+    color: #000; /* Texto negro para legibilidad */
+    padding: 5px 10px; /* Agrega un poco de espacio alrededor del texto */
+    transition: background-color 0.3s, color 0.3s; /* Transición suave para hover */
+    text-decoration: none;
+  }
+  
+  .navbar-logout-btn:hover {
+    background-color: #000; /* Fondo negro para el hover */
+    color: #fff; /* Texto blanco para el hover */
+  }
+  
+  .custom-brand {
+    font-size: 1.5em; /* Ajusta el tamaño como necesites */
+  }
+  

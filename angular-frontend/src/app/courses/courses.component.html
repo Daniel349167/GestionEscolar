@@ -1,0 +1,122 @@
+<div class="container">
+  <div class="mt-4">
+    <h3>Listado de Cursos</h3>
+    <button class="btn custom-green mt-3 mb-2" (click)="selectCurso(createEmptyCurso())">Agregar Nuevo Curso</button>
+    <table class="table mt-3">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col" class="sortable-header" (click)="sortCursos('nombre')">
+            Nombre
+            <span class="sort-icon">
+              {{ currentSortField === 'nombre' ? (currentSortDirection === 'asc' ? '⭡' : '⭣') : '⥮' }}
+            </span>
+            
+          </th>
+          <th scope="col" class="sortable-header" (click)="sortCursos('horario')">
+            Horario
+            <span class="sort-icon">
+              {{ currentSortField === 'horario' ? (currentSortDirection === 'asc' ? '⭡' : '⭣') : '⥮' }}
+            </span>
+            
+          </th>
+          <th scope="col" class="sortable-header" (click)="sortCursos('fecha_inicio')">
+            Fecha Inicio
+            <span class="sort-icon">
+              {{ currentSortField === 'fecha_inicio' ? (currentSortDirection === 'asc' ? '⭡' : '⭣') : '⥮' }}
+            </span>
+            
+          </th>
+          <th scope="col" class="sortable-header" (click)="sortCursos('fecha_fin')">
+            Fecha Fin
+            <span class="sort-icon">
+              {{ currentSortField === 'fecha_fin' ? (currentSortDirection === 'asc' ? '⭡' : '⭣') : '⥮' }}
+            </span>
+            
+          </th>
+          <th scope="col" class="sortable-header" (click)="sortCursos('tipo')">
+            Tipo
+            <span class="sort-icon">
+              {{ currentSortField === 'tipo' ? (currentSortDirection === 'asc' ? '⭡' : '⭣') : '⥮' }}
+            </span>
+            
+          </th>  
+          <th scope="col">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let curso of cursos; let i = index">
+          <th scope="row">{{ i + 1 }}</th>
+          <td>{{ curso.nombre }}</td>
+          <td>{{ curso.horario }}</td>
+          <td>{{ curso.fecha_inicio | date: 'dd/MM/yy' }}</td>
+          <td>{{ curso.fecha_fin | date: 'dd/MM/yy' }}</td>
+          <td>{{ curso.tipo }}</td>
+          <td>
+            <button type="button" class="btn btn-primary" style="margin-right: 4px;" (click)="selectCurso(curso)">Editar</button>
+            <button type="button" class="btn btn-danger" style="margin-left: 4px;" (click)="deleteCurso(curso.id)">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+
+  <!-- Formulario para añadir/editar cursos -->
+  <div *ngIf="selectedCurso" class="card">
+    <div class="card-body">
+      <form #cursoForm="ngForm" (ngSubmit)="saveCurso(cursoForm)">
+        <div class="mb-3">
+          <label for="nombreCurso" class="form-label">Nombre del curso</label>
+          <input type="text" class="form-control" id="nombreCurso" [(ngModel)]="selectedCurso.nombre" name="nombre"
+            required maxlength="50" #nombreCurso="ngModel">
+          <div *ngIf="nombreCurso.invalid && nombreCurso.touched" class="alert alert-danger">
+            El nombre es obligatorio y debe tener menos de 50 caracteres.
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="horarioCurso" class="form-label">Horario</label>
+          <input type="text" class="form-control" id="horarioCurso" [(ngModel)]="selectedCurso.horario" name="horario"
+            required #horarioCurso="ngModel">
+          <div *ngIf="horarioCurso.invalid && horarioCurso.touched" class="alert alert-danger">
+            El horario es obligatorio.
+          </div>
+
+
+        </div>
+        <div class="mb-3">
+          <label for="fechaInicio" class="form-label">Fecha de Inicio</label>
+          <input type="date" class="form-control" id="fechaInicio" [(ngModel)]="selectedCurso.fecha_inicio"
+            name="fecha_inicio" required #fechaInicio="ngModel">
+          <div *ngIf="fechaInicio.invalid && fechaInicio.touched" class="alert alert-danger">
+            La fecha de inicio es obligatoria.
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="fechaFin" class="form-label">Fecha de Fin</label>
+          <input type="date" class="form-control" id="fechaFin" [(ngModel)]="selectedCurso.fecha_fin" name="fecha_fin"
+            required #fechaFin="ngModel">
+          <div *ngIf="fechaFin.invalid && fechaFin.touched" class="alert alert-danger">
+            La fecha de fin es obligatoria.
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="tipoCurso" class="form-label">Tipo de Curso</label>
+          <select class="form-select" id="tipoCurso" [(ngModel)]="selectedCurso.tipo" name="tipo" required
+            #tipoCurso="ngModel">
+            <option value="Presencial">Presencial</option>
+            <option value="Virtual">Virtual</option>
+          </select>
+          <div *ngIf="tipoCurso.invalid && tipoCurso.touched" class="alert alert-danger">
+            El tipo de curso es obligatorio.
+          </div>
+        </div>
+        <button type="submit" class="btn btn-success" style="margin-right: 3px;">Guardar</button>
+        <button type="button" class="btn btn-secondary" style="margin-left: 3px;" (click)="cancel()">Cancelar</button>
+      </form>
+    </div>
+  </div>
+
+  <div style="margin-top: 45px;"></div>
+</div>
